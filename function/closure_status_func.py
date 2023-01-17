@@ -14,7 +14,15 @@ def make_cyclic_mosaic():
 
         length = len(matchobj.group())
         return char * length
-
+    '''
+    重复调用时使用新的闭包函数对象，计数器重新从 0 开始，没有结果不稳定问题
+    '''
+    print(char_index)
     return _mosaic
+'''
+此处是 make_cyclic_mosaic() 而不是 make_cyclic_mosaic，
+因为 make_cyclic_mosaic() 函数的调用结果才是真正的替换函数
+'''
+print(re.sub(r'\d+', make_cyclic_mosaic(), '商店共 100 个苹果，小明以 12 元每斤的价格买走了8 个'))
 
 print(re.sub(r'\d+', make_cyclic_mosaic(), '商店共 100 个苹果，小明以 12 元每斤的价格买走了8 个'))
